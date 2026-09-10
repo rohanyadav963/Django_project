@@ -39,8 +39,8 @@
                 <tr>
                     <th>Attached File</th>
                     <td>
-                        {% if f.file_attachment %}
-                        <a href="{{f.file_attachment.url}}" target="_blank">View File</a>
+                        {% if file.file_attachment %}
+                        <a href="{{file.file_attachment.url}}" target="_blank">View File</a>
                     {% else %}
                         No file attached
                     {% endif %}

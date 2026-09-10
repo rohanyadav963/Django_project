@@ -20,10 +20,12 @@ class Employee(models.Model):
     name = models.CharField(max_length=100)
     contactno = models.CharField(max_length=15)
     email = models.CharField(max_length=50)
-    department = models.ForeignKey(Department,on_delete=models.CASCADE)
+    department = models.ForeignKey(Department,on_delete=models.PROTECT)
     designation = models.CharField(max_length=50)
     picture = models.ImageField(upload_to='profiles',null=True,blank=True)
     address = models.TextField()
+    def __str__(self):
+        return f"{self.name}-{self.email}"
 
 # file creation and sharing db
 class File(models.Model):
