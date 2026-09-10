@@ -1,0 +1,47 @@
+{% extends "adminbase.html" %}
+{% load static %}
+{% block admin %}
+<h3>All files</h3>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card p-4">
+            <table class="table">
+                <tr>
+                    <th>Sr. No</th>
+                    <th>File No</th>
+                    <th>Title</th>
+                    <th>Subject</th>
+                    <th>Initiated By</th>
+                    <th>Current Holder</th>
+                    <th>Status</th>
+                    <th>File Attachement</th>
+                    <th>Create Date</th>
+                </tr>
+                {% for f in files  %}
+                <tr>
+                    <td>{{forloop.counter}}</td>
+                    <td>{{f.file_no}}</td>
+                    <td>{{f.title}}</td>
+                    <td>{{f.subject}}</td>
+                    <td>{{f.initiated_by}}</td>
+                    <td>{{f.current_holder}}</td>
+                    {% if f.status == "OPEN" %}
+                    <td> <span class="badge bg-success-subtle p-2 rounded-2 text-success border-1 fw-bold border-success ">{{f.status}}</span></td>
+                    {% else %}
+                    <td><span class="badge bg-danger-subtle rounded-2 p-2 text-danger border-1 fw-bold border-danger">{{f.status}}</span></td>
+
+                    {% endif %}
+                    
+                    {% if f.file_attachment %}
+                    <td><a href="{{f.file_attachment.url}}">view File</a></td>
+                    {% else %}
+                    <td>No file attached</td>
+                    {% endif %}
+                    <td>{{f.created_at}}</td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

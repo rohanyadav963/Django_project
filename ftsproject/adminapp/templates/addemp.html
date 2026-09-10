@@ -1,0 +1,60 @@
+{% extends "adminbase.html" %} {% load static %} {% block admin %}
+<div class="row">
+  <div class="col-sm-8 mx-auto">
+    <div class="card shadow-lg">
+      <h4 class="text-primary text-center mt-3">Add Employees</h4>
+      <hr />
+      <form method="post" class="row p-4">
+        {% csrf_token %}
+        <div class="col-sm-6 mb-2">
+          <label for="empid" class="form-label fw-bold">Employee ID</label>
+          <input type="text" name="empid" id="empid" class="form-control" />
+        </div>
+        <div class="col-sm-6 mb-2">
+          <label for="name" class="form-label fw-bold">Employee Name</label>
+          <input type="text" name="name" id="name" class="form-control" />
+        </div>
+
+        <div class="col-sm-6 mb-2">
+          <label for="emil" class="form-label fw-bold">Email</label>
+          <input type="text" name="email" id="emil" class="form-control" />
+        </div>
+        <div class="col-sm-6 mb-2">
+          <label for="contno" class="form-label fw-bold">Contact No.</label>
+          <input
+            type="text"
+            name="contactno"
+            id="contno"
+            class="form-control"
+          />
+        </div>
+
+        <div class="col-sm-6 mb-2">
+          <label for="designation" class="form-label fw-bold"
+            >Designation</label
+          >
+          <input
+            type="text"
+            name="designation"
+            id="designation"
+            class="form-control"
+          />
+        </div>
+        <div class="col-sm-6 mb-2">
+          <label for="depts" class="form-label fw-bold">Department</label>
+          <select name="dept_id" id="depts" class="form-select">
+            <option value="" disabled selected>Select Department</option>
+            {% for d in depts %}
+            <option value="{{d.id}}">{{d.dept_name}}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary fw-bold mt-2 px-2">
+          Add Employee
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

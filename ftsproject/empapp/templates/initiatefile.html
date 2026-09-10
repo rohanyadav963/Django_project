@@ -1,0 +1,45 @@
+{% extends "empdash.html" %}
+{% load static %}
+{% block empname1 %}{{emp.name}}{% endblock %}
+{% block empname2 %}{{emp.name}}{% endblock %}
+{% block profileimg1 %}{{emp.picture.url}}{% endblock %}
+{% block profileimg2 %}{{emp.picture.url}}{% endblock %}
+{% block employee %}
+<div class="row">
+    
+<h1 class="text-center  p-0">Initiate File</h1>
+    <div class="col-sm-10 mx-auto">
+        <div class="card p-4 shadow-lg">
+            <form class="row g-0" method="post" enctype="multipart/form-data" >
+                {% csrf_token %}
+                <div class="col-sm-12">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="title" class="form-control mb-2">
+                </div>
+                <div class="col-sm-12">
+                <label for="subj" class="form-label">subject</label>
+                <textarea name="subject" id="subj" class="form-control mb-2"></textarea>
+                </div>
+                <div class="col-sm-12">
+                <label for="file" class="form-label">Attach File</label>
+                <input type="file" name="file_attachment" class="form-control mb-2">
+                    </div>
+                    
+            <h5>Forward To</h5>
+            <div class="col-sm-12">
+                <label for="emp">Select Employee</label>
+                <select name="emp_id" id="emp" class="form-select">
+                    <option value="" selected disabled >Select Employee</option>
+                    {% for emp in employees %}
+                    <option value="{{emp.email}}">{{emp.name}} ({{emp.department.dept_name}}) -- {{emp.email}}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div class="col-sm-12 text-center mt-2">
+                <button type="submit" class="btn btn-success">Create</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

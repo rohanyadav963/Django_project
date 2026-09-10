@@ -1,0 +1,68 @@
+{% extends "adminbase.html" %}
+{% load static %}
+
+{% block admin %}
+
+<style>
+  .icon{
+    background-color: #163da1f0;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    padding-top: 4px;
+    color: white;
+  }
+  .icon i{
+    margin-top: 30px;
+
+  }
+  .card{
+    border-radius: 2rem;
+
+  }
+</style>
+<div class="container-fluid">
+  <div class="col-sm-12">
+    <div class="card p-3 text-white  " style="background-color:#163DA1 !important;border-radius: 20px; color: white !important;">
+      <h1 class="text-light">Welcome Admin GGL | Head Office</h1>
+      <p >Manage complete file movement system from this dashboard</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-3">
+      <a href="">
+       <div class="card shadow  text-center  p-3">
+        <div class="icon " ><i class="ti ti-folders  fs-1"></i></div>
+        <h2 class="fw-bold">{{total_files}}</h2>
+        <p class="fw-bold">Total Files</p>
+       </div>
+      </a>
+    </div>
+    <div class="col-sm-3">
+      <div class="card shadow  text-center  p-3">
+        <div class="icon " ><i class="ti ti-folders fs-1"></i></div>
+        <h2 class="fw-bold">{{pending_files}}</h2>
+        <p class="fw-bold">Pendding Files</p>
+      </div>
+    </div>
+    <div class="col-sm-3">
+      <a href="{% url 'viewemp' %}">
+       <div class="card shadow  text-center  p-3">
+        <div class="icon " ><i class="ti ti-users fs-1"></i></div>
+        <h2 class="fw-bold">{{total_emp}}</h2>
+        <p class="fw-bold">Total Employees</p>
+       </div>
+      </a>
+    </div>
+    <div class="col-sm-3">
+      <a href="{% url 'viewdept' %}">
+       <div class="card shadow  text-center  p-3">
+        <div class="icon " ><i class="ti ti-folders fs-1"></i></div>
+        <h2 class="fw-bold">{{total_dep}}</h2>
+        <p class="fw-bold">Total Departments</p>
+       </div>
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}

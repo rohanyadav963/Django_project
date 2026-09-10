@@ -1,0 +1,73 @@
+{% extends "empbase.html" %} 
+{% load static %} 
+{% block empname1 %}{{emp.name}}{% endblock %}
+{% block empname2 %}{{emp.name}}{% endblock %}
+{% block profileimg1 %}{{emp.picture.url}}{% endblock %}
+{% block profileimg2 %}{{emp.picture.url}}{% endblock %}
+{% block employee %}
+
+<style>
+  .icon{
+    background-color: #034a24;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    padding-top: 4px;
+    color: white;
+  }
+  .icon i{
+    margin-top: 30px;
+
+  }
+  .card{
+    border-radius: 2rem;
+
+  }
+</style>
+<div class="container-fluid">
+  <div class="col-sm-12">
+    <div class="card p-3 text-white  " style="background-color:#034a24 !important;border-radius: 20px; color: white !important;">
+      <h1 class="text-light">Welcome Employee GGL | Head Office</h1>
+      <p >Manage complete file movement system from this dashboard</p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4">
+      <a href="{% url 'viewfiles' %}">
+       <div class="card shadow  text-center  p-3">
+        <div class="icon " ><i class="ti ti-folders  fs-1"></i></div>
+        <h2 class="fw-bold">{{total_files}}</h2>
+        <p class="fw-bold">Total Files</p>
+       </div>
+      </a>
+    </div>
+    <div class="col-sm-4">
+      <div class="card shadow  text-center  p-3">
+        <div class="icon " ><i class="ti ti-files fs-1"></i></div>
+        <h2 class="fw-bold">{{pending_files}}</h2>
+        <p class="fw-bold">Pendding Files</p>
+      </div>
+    </div>
+    <div class="col-sm-4">
+      <div class="card shadow  text-center  p-3">
+        <div class="icon " ><i class="ti ti-files fs-1"></i></div>
+        <h2 class="fw-bold">{{close_files}}</h2>
+        <p class="fw-bold">Close Files</p>
+      </div>
+    </div>
+    {% comment %} <div class="col-sm-3">
+      <div class="card shadow  text-center  p-3">
+        <div class="icon " ><i class="ti ti-folders fs-1"></i></div>
+        <h2 class="fw-bold">0</h2>
+        <p class="fw-bold">Total Departments</p>
+      </div>
+    </div> {% endcomment %}
+  </div>
+  <div class="row mt-3">
+    <div class="col-sm-12">
+      <div class="card p-4 shadow"><h4>hello</h4></div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}

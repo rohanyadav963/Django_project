@@ -1,0 +1,100 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <meta charset="UTF-8" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Home page</title>
+    <link rel="stylesheet" href="{%  static 'css/bootstrap.css' %}" />
+    <link rel="stylesheet" href="{%  static 'css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}" />
+
+  </head>
+  <body>
+    <!--outer start  -->
+    <div class="container-fluid shadow-sm" style="height: 100vh">
+      <div class="row h-100vh">
+        <div class="col-sm-8 mx-auto">
+          <!-- center start -->
+          <div class="row border-2 border-top border-success rounded-top">
+            <!-- left content -->
+            <div class="col-sm-6  bg-l pt-3 text-white rounded-start" style="background-color: rgba(5, 100, 5, 0.945);">
+              <div class="logo bg-white border rounded w-25 px-2 py-2 mt-3 ms-2">
+                <img src="{% static 'images/ggllogo.png' %}" alt="gglpng" />
+              </div>
+              <h1 class="ms-2">File Tracking System</h1>
+              <p class="ms-2 mb-5">
+                Secure digital platform for official file upload, movement,
+                approvals, department workflow and real-time tracking.
+              </p>
+              <div class="features ms-2">
+                <span class="fw-bold">
+                  <i class="fa-solid fa-file-shield"></i> Secure File Management
+                  System</span
+                >
+              </div>
+              <div class="features ms-2 fw-bold mb-2">
+                <span
+                  ><i class="fa-solid fa-route"></i>Track File Movement</span
+                >
+              </div>
+            </div>
+            <!-- left end -->
+
+            <!-- Right content -->
+            <div class="col-sm-6 bg-white rounded-end">
+              <div class="rightcontent ms-2 my-4">
+                <span
+                  class="bg-success-subtle rounded-4 px-2 py-1 text-success fw-bold"
+                  style="font-size: 10px"
+                  >Green Gas Limited</span
+                >
+                <h2 class="fw-bold mt-2">Official Portal</h2>
+                <p>Plese select your login type to continue</p>
+
+              <a href="{% url 'adminlogin'%}" class="text-decoration-none box1">
+                <div class="login-box card shadow-sm p-3 rounded mb-3">
+                  <div class="bg-primary h-25 text-center rounded-3 " style="width:50px;">
+                    <i class="fa-solid fa-user-shield bg-primary bg-f text-white  p-1 my-1 rounded-2 fs-2"></i>
+                  </div>
+                    <h4 class="fw-bold text-black mt-1">Admin Login</h4>
+                    <span class="text-black">
+                      Manage users, departments and all file records.
+                    </span>
+                  
+                </div>
+              </a>
+              <a href="{% url 'userlogin'%}" class="text-decoration-none text-dark">
+                <div class="login-box  card shadow-sm p-3 mb-3 d-flex rounded">
+                    <div class="bg-success h-25 text-center rounded-3 " style="width:50px;">
+                      <i class="fa-solid fa-user bg-success bg-f text-white  p-1 my-1 rounded-2 fs-2"></i>
+                    </div>
+                    <h4 class="fw-bold text-black mt-1">User Login</h4>
+                    <span class="text-black">
+                      Upload, update, move and track your files.
+                    </span>
+                 </div>
+              </a>
+              </div>
+            </div>
+            <!-- right end -->
+          </div>
+          <!-- center end -->
+        </div>
+        <!-- outer end -->
+      </div>
+    </div>
+
+    {% comment "" %}
+    <h1 class="bg-success">hell</h1>
+    <a href="{% url 'adminlogin' %}">Admin Login</a>
+    <br />
+    <a href="{% url 'userlogin' %}">User Login</a>
+    {% endcomment %}
+
+    <script src="{%static 'js/bootstrap.bundle.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,93 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <link rel="stylesheet" href="{%  static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{%  static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+</head>
+
+<body style="  min-height: 100vh;
+  overflow-y: hidden;background:linear-gradient(135deg, rgba(18, 41, 90, .94), rgba(29, 78, 216, .90)),
+    url('{% static " images/bg_img.png"%}'); background-size: cover; background-position: center; background-repeat:
+    no-repeat; display: flex; align-items: center; justify-content: center; padding: 90px 24px; overflow-x: hidden;">
+
+    <div class="container-fluid shadow-sm" style="height:100vh; ">
+        <div class="row  h-100vh align-items-center">
+            <div class="col-sm-8 mx-auto  ">
+                <div class=" row border-2 shadow-sm border-top  border-primary  rounded-top  ">
+                    <div class="col-sm-6 text-white rounded-start " style="background-color:rgba(11, 52, 141, 0.94); ">
+                        <div class="logo bg-white border rounded w-25 px-2 py-2 mt-3 ms-2 ">
+                            <img src="{% static 'images/ggllogo.png' %}" alt="gglpng">
+                        </div>
+                        <h1 class="ms-2">Admin Login</h1>
+                        <p class="ms-2 mb-5">Admin can manage employees, departments, file records, tracking and
+                            movement workflow.</p>
+
+                    </div>
+
+                    <div class="col-sm-6 bg-white d-flex  rounded-end">
+                        <div class="rightcontent ms-2 my-4">
+                            <div class="card ps-3 border-0">
+                            <span class="bg-success-subtle rounded-4 px-2 py-1   text-success fw-bold"
+                                style="font-size:10px; width: 8rem;">Administrator Area</span>
+                            <h2 class="fw-bold mt-4">Welcome Admin</h2>
+                            <p>Enter admin credentials to access dashboard.</p>
+                            <form method="post">
+                                {% csrf_token %}
+                                {% if messages %} {% for m in messages %}
+                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                                    {{m}}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                                {% endfor %} {% endif %}
+
+                                <label class="form-label fw-bold">Admin Username / Email</label>
+                                <div class="input-group ">
+                                    <span class="input-group-text">
+                                        <i class="fa-solid fa-user-shield">
+                                        </i>
+                                    </span>
+                                    <input type="text" name="username" placeholder="Enter username or email"
+                                        class="form-control" required>
+                                </div>
+                                <label for="password" class="form-label fw-bold">Password</label>
+                                <div class="input-group mb-3">
+                                    <span class="input-group-text">
+                                        <i class="fa-solid fa-lock"></i></span>
+                                    <input type="password" name="password" placeholder="Enter password"
+                                        class="form-control" required>
+                                </div>
+                                <button class="btn fw-bold w-100 my-4 btn-primary">
+                                    <i class="fa-solid fa-right-to-bracket me-2"></i>
+                                    Admin Login
+                                </button>
+                                <a href="{% url 'home' %}" class="back fw-bold text-decoration-none">← Back to
+                                    Portal</a>
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+    {% comment "" %}
+    <h1 class="bg-success">hell</h1>
+    <a href="{% url 'adminlogin' %}">Admin Login</a>
+    <br>
+    <a href="{% url 'userlogin' %}">User Login</a>
+    {% endcomment %}
+
+    <script src="{%static 'js/bootstrap.bundle.js' %}"></script>
+</body>
+
+</html>

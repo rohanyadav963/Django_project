@@ -1,0 +1,25 @@
+{% extends "adminbase.html" %}
+{% load static %}
+{% block admin %}
+<div class="row">
+    <div class="col-sm-6 mx-auto">
+        <div class="card p-4 shadow  rounded-3">
+            <h4 class="mx-auto mb-4 text-primary">Change Password</h4>
+            <form method="post">
+                {% csrf_token %}
+                <label for="oldpass" class="form-label fw-bold">Old Password</label>
+                <input type="password" name="password" class="form-control fw-bold mb-2" placeholder="Old Password" id="oldpass">
+
+                <label for="npass" class="form-label fw-bold">New Password</label>
+                <input type="password" name="npassword" class="form-control fw-bold mb-2" placeholder="New Password" id="npass">
+
+                <label for="cpass" class="form-label fw-bold">Confirm Password</label>
+                <input type="password" name="cpassword" class="form-control fw-bold mb-2" placeholder="Confirm Password" id="cpass">
+
+                <button type="submit" class="btn btn-primary w-100 my-3 fw-bold">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

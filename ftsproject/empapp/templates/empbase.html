@@ -1,0 +1,349 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<!-- [Head] start -->
+
+<head>
+  <title>Employee Dashboard</title>
+  {% comment %} <link rel="stylesheet" href="{%  static 'css/style.css' %}"> {% endcomment %}
+  <style>
+    body{
+      @font-face {
+    font-family: 'Poppins';
+    src: url('../fonts/Poppins-Medium.ttf') format('truetype');
+    font-weight: 500;
+      }
+
+    }
+  body{
+    font-family: "Poppins", sans-serif;
+  }
+  * {
+    font-family: "Poppins", sans-serif;
+  }
+  </style>
+  <!-- [Meta] -->
+   
+  <!-- [Meta] -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+  <!-- [Favicon] icon -->
+  <link rel="icon" href="" type="image/x-icon">
+
+  <!-- data tables css -->
+  <link rel="stylesheet" href="{% static 'admin/assets/css/plugins/dataTables.bootstrap5.min.css' %}">
+  <!-- [Google Font] Family -->
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@300;400;500;600;700&display=swap"
+    id="main-font-link">
+  <!-- [Tabler Icons] https://tablericons.com -->
+  <link rel="stylesheet" href="{% static 'admin/assets/fonts/tabler-icons.min.css' %}">
+  <!-- [Feather Icons] https://feathericons.com -->
+  <link rel="stylesheet" href="{% static 'admin/assets/fonts/feather.css' %}">
+  <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+  <link rel="stylesheet" href="{% static 'admin/assets/fonts/fontawesome.css' %}">
+  <!-- [Material Icons] https://fonts.google.com/icons -->
+  <link rel="stylesheet" href="{% static 'admin/assets/fonts/material.css' %}">
+  <!-- [Template CSS Files] -->
+  <link rel="stylesheet" href="{% static 'admin/assets/css/style.css' %}" id="main-style-link">
+  <link rel="stylesheet" href="{% static 'admin/assets/css/style-preset.css' %}">
+<style>
+  .m-header{
+      background-color: #034a24;
+      height: 200px !important;
+    }
+    .box{
+      /* /* background-color: white; */
+      height: 100%;
+      /* padding: .5rem; */ 
+      /* border-radius: 1rem; */
+    }
+  
+</style>
+</head>
+<!-- [Head] end -->
+<!-- [Body] Start -->
+
+<body data-pc-preset="preset-1" data-pc-direction="ltr" data-pc-theme="light">
+  <!-- [ Pre-loader ] start -->
+  <div class="loader-bg">
+    <div class="loader-track">
+      <div class="loader-fill"></div>
+    </div>
+  </div>
+  <!-- [ Pre-loader ] End -->
+  <!-- [ Sidebar Menu ] start -->
+  <nav class="pc-sidebar">
+    <div class="navbar-wrapper fw-bold" style="background-color:#034a24;">
+      <div class="m-header">
+        <a href="{% url 'empdash' %}" class="b-brand text-primary">
+          <!-- ========   Change your logo from here   ============ -->
+          <div class="box">
+              <img src="{% static 'images/ggllogo.png ' %}" alt="hhh" class="bg-light rounded-3 p-3">
+              <h4 class="text-light mt-1">User Login</h4>
+          <p class="text-light ">Employee Dashboard</p>
+            
+          </div>
+        </a>
+      </div>
+      <div class="navbar-content " style="background-color:#034a24;">
+        <ul class="pc-navbar " >
+          <li class="pc-item ">
+            <a href="{% url 'empdash' %}" class="pc-link">
+              <span class="pc-micon"><i class="ti ti-dashboard text-light"></i></span>
+              <span class="pc-mtext fw-bold text-light">Dashboard</span>
+            </a>
+          </li>
+
+          <li class="pc-item pc-caption fw-bold">
+            <label class="text-light ">Manage</label>
+            <i class="ti ti-dashboard"></i>
+          </li>
+
+          <!-- Department -->
+          <li class="pc-item pc-hasmenu">
+            <a href="#!" class="pc-link">
+              <span class="pc-micon fw-bold"><i class="ti ti-user text-light"></i></span>
+              <span class="pc-mtext fw-bold text-light">Manage Profile</span><span class="pc-arrow text-light"><i
+                  data-feather="chevron-right"></i></span>
+            </a>
+            <ul class="pc-submenu">
+              <li class="pc-item"><a class="pc-link fw-bold text-light" href="{% url 'viewprofile' %}">View Profile </a></li>
+              <li class="pc-item"><a class="pc-link fw-bold text-light" href="{% url 'updateprofile' %}">Update Profile</a></li>
+            </ul>
+          </li>
+
+
+          <!-- Employees -->
+          <li class="pc-item pc-hasmenu">
+            <a href="#!" class="pc-link">
+              <span class="pc-micon"><i class="ti ti-files text-light"></i></span>
+              <span class="pc-mtext fw-bold text-light">Manage File</span><span class="pc-arrow text-light"><i
+                  data-feather="chevron-right"></i></span>
+            </a>
+            <ul class="pc-submenu">
+              <li class="pc-item"><a class="pc-link fw-bold text-light" href="{% url 'initiatefile' %}">Initiate File </a></li>
+               <li class="pc-item"><a class="pc-link fw-bold text-light" href="{% url 'recivedfiles' %}">Recived File</a></li>
+              <li class="pc-item"><a class="pc-link fw-bold text-light" href="{% url 'viewfiles' %}">View Files</a></li>
+             
+            </ul>
+          </li>
+
+          {% comment %} <li class="pc-item">
+            <a href="#" class="pc-link">
+              <span class="pc-micon"><i class="ti ti-typography"></i></span>
+              <span class="pc-mtext">Enquiries</span>
+            </a>
+          </li> {% endcomment %}
+          
+          
+          <li class="pc-item pc-caption">
+            <label class="text-light fw-bold">Actions</label>
+            <i class="ti ti-news"></i>
+          </li>
+          <li class="pc-item">
+            <a href="{% url 'empchangepass' %}" class="pc-link">
+              <span class="pc-micon"><i class="ti ti-lock text-light"></i></span>
+              <span class="pc-mtext fw-bold text-light">Change Password</span>
+            </a>
+          </li>
+          <li class="pc-item">
+            <a href="{% url 'emplogout' %}" class="pc-link">
+              <span class="pc-micon fw-bold"> <i class="ti ti-power text-light"></i></span>
+              <span class="pc-mtext fw-bold text-light">Logout</span>
+            </a>
+          </li>
+
+        </ul>
+
+      </div>
+    </div>
+  </nav>
+  <!-- [ Sidebar Menu ] end --> <!-- [ Header Topbar ] start -->
+  <header class="pc-header" style="background-color:#034a24;">
+    <div class="header-wrapper"> <!-- [Mobile Media Block] start -->
+      <div class="me-auto pc-mob-drp">
+        <ul class="list-unstyled">
+          <!-- ======= Menu collapse Icon ===== -->
+          <li class="pc-h-item pc-sidebar-collapse">
+            <a href="#" class="pc-head-link ms-0" id="sidebar-hide">
+              <i class="ti ti-menu-2 text-light"></i>
+            </a>
+          </li>
+          <li class="pc-h-item pc-sidebar-popup">
+            <a href="#" class="pc-head-link ms-0" id="mobile-collapse">
+              <i class="ti ti-menu-2"></i>
+            </a>
+          </li>
+          <li class="dropdown pc-h-item d-inline-flex d-md-none">
+            <a class="pc-head-link dropdown-toggle arrow-none m-0" data-bs-toggle="dropdown" href="#" role="button"
+              aria-haspopup="false" aria-expanded="false">
+              <i class="ti ti-search"></i>
+            </a>
+            <div class="dropdown-menu pc-h-dropdown drp-search">
+              <form class="px-3">
+                <div class="form-group mb-0 d-flex align-items-center">
+                  <i data-feather="search"></i>
+                  <input type="search" class="form-control border-0 shadow-none" placeholder="Search here. . .">
+                </div>
+              </form>
+            </div>
+          </li>
+          <li class="pc-h-item d-none d-md-inline-flex">
+            <form class="header-search">
+              <i data-feather="search" class="icon-search"></i>
+              <input type="search" class="form-control" placeholder="Search here. . .">
+            </form>
+          </li>
+        </ul>
+      </div>
+      <!-- [Mobile Media Block end] -->
+      <div class="ms-auto">
+        <ul class="list-unstyled">
+          
+          <li class="dropdown pc-h-item header-user-profile">
+            <a class="pc-head-link dropdown-toggle arrow-none me-0" data-bs-toggle="dropdown" href="#" role="button"
+              aria-haspopup="false" data-bs-auto-close="outside" aria-expanded="false">
+               {% if emp.picture %}
+                            <img src="{% block profileimg1 %}{% endblock %}" alt="user-image" class="user-avtar">
+                    {% else %}
+                            <img src="{% static 'admin/assets/images/user/avatar-7.jpg' %}" alt="user-image" class="user-avtar">
+                        
+                    {% endif %}
+              
+              <span class="text-secondary fw-bold">{% block empname1 %}Employee{% endblock %}</span>
+            </a>
+            <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown" style="background-color:#034a24;">
+              <div class="dropdown-header">
+                <div class="d-flex mb-1">
+                  <div class="flex-shrink-0">
+                    {% if emp.picture %}
+                           <img src="{% block profileimg2 %}{% endblock %}" alt="user-image"
+                      class="user-avtar wid-35">
+                    {% else %}
+                            <img src="{% static 'admin/assets/images/user/avatar-7.jpg' %}" alt="" class="user-avtar wid-35">
+                        
+                    {% endif %}
+                    
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <h6 class="mb-1 text-light">{% block empname2 %}Employee{% endblock %}</h6>
+                    <span class="text-light">{{eid}}</span>
+                  </div>
+                  <!-- LOGOUT -->
+                  <a href="{% url 'emplogout' %}" class="pc-head-link bg-transparent"><i class="ti ti-power text-danger"></i></a>
+                </div>
+              </div>
+              
+              <div class="tab-content" id="mysrpTabContent">
+                <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1"
+                  tabindex="0">
+                  <a href="{% url 'empchangepass' %}" class="dropdown-item">
+                    <i class="ti ti-lock fw-bold text-secondary"></i>
+                    <span class="text-secondary fw-bold">Change Password</span>
+                  </a>
+                  
+                  <a href="{% url 'emplogout' %}" class="dropdown-item ">
+                    <i class="ti ti-power text-secondary fw-bold"></i>
+                    <span class="text-secondary fw-bold">Logout</span>
+                  </a>
+                </div>
+                
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </header>
+  <!-- [ Header ] end -->
+
+
+
+  <!-- [ Main Content ] start -->
+  <div class="pc-container">
+    <div class="pc-content">
+      {% block employee %}
+
+      {% endblock %}
+    </div>
+  </div>
+  <!-- [ Main Content ] end -->
+  <footer class="pc-footer">
+    <div class="footer-wrapper container-fluid">
+      <div class="row">
+        <div class="col-sm my-1">
+          <p class="m-0">Softpro India &#9829; developed by <a href="https://linkedin.com/in/er-asif"
+              target="_blank">Rohan</a>.</p>
+        </div>
+        <div class="col-auto my-1">
+          <ul class="list-inline footer-link mb-0">
+            <li class="list-inline-item"><a href="../index.html">Home</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- [Page Specific JS] start -->
+  <script src="{% static 'admin/assets/js/plugins/apexcharts.min.js' %}"></script>
+  <script src="{% static 'admin/assets/js/pages/dashboard-default.js' %}"></script>
+  <!-- [Page Specific JS] end -->
+  <!-- Required Js -->
+  <script src="{% static 'admin/assets/js/plugins/popper.min.js' %}"></script>
+  <script src="{% static 'admin/assets/js/plugins/simplebar.min.js' %}"></script>
+  <script src="{% static 'admin/assets/js/plugins/bootstrap.min.js' %}"></script>
+  <script src="{% static 'admin/assets/js/fonts/custom-font.js' %}"></script>
+  <script src="{% static 'admin/assets/js/pcoded.js' %}"></script>
+  <script src="{% static 'admin/assets/js/plugins/feather.min.js' %}"></script>
+
+
+
+
+
+  <script>layout_change('light');</script>
+
+
+
+
+  <script>change_box_container('false');</script>
+
+
+
+  <script>layout_rtl_change('false');</script>
+
+
+  <script>preset_change("preset-1");</script>
+
+
+  <script>font_change("Public-Sans");</script>
+
+  <script src="{% static 'admin/assets/js/plugins/sweetalert2.all.min.js' %}"></script>
+  {% if messages %}
+    {% for message in messages %}
+    <script>
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.addEventListener('mouseenter', Swal.stopTimer);
+              toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
+          });
+          Toast.fire({
+            icon: '{{message.tags}}',
+            title: '{{message}}'
+          });
+      </script>
+    {% endfor %}
+  {% endif %}
+</body>
+<!-- [Body] end -->
+
+</html>

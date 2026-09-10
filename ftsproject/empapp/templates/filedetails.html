@@ -1,0 +1,109 @@
+{% extends "empbase.html" %}
+{% load static %}
+{% block empname1 %}{{emp.name}}{% endblock %}
+{% block empname2 %}{{emp.name}}{% endblock %}
+{% block profileimg1 %}{{emp.picture.url}}{% endblock %}
+{% block profileimg2 %}{{emp.picture.url}}{% endblock %}
+{% block employee %}
+<h3>File Detalis </h3>
+<div class="row">
+    
+    <div class="col-sm-8 ">
+        <div class="card p-4 ">
+            <h4>File No: {{file.file_no}}</h4>
+            <table class="table">
+                <tr>
+                    <th>Title</th>
+                    <td>{{file.title}}</td>
+                </tr>
+                <tr>
+                    <th>Subject</th>
+                    <td>{{file.subject}}</td>
+                </tr>
+                <tr>
+                    <th>Initiated By</th>
+                    <td>{{file.initiated_by.name}}</td>
+                </tr>
+                <tr>
+                    <th>Current Holder</th>
+                    <td>{{file.current_holder.name}}</td>
+                </tr>
+                <tr>
+                    <th>Status</th>
+                    <td>{{file.status}}</td>
+                </tr>
+                <tr>
+                    <th>Initiated Date</th>
+                    <td>{{file.created_at}}</td>
+                </tr>
+                <tr>
+                    <th>Attached File</th>
+                    <td>
+                        {% if f.file_attachment %}
+                        <a href="{{f.file_attachment.url}}" target="_blank">View File</a>
+                    {% else %}
+                        No file attached
+                    {% endif %}
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="card p-4">
+            <h4>Track Histroy</h4>
+           {% for fm in file_moments %}
+           <div class="card p-4">
+           <p><i class="ti ti-calendar"></i>{{fm.moved_at}}</p>
+           <p> <b>From:</b>{{fm.from_employee.name}}({{fm.from_employee.email}}) <br>
+            <i class="ti ti-arrow-down fw-bold"></i> <br>
+            <b>To:</b> {{fm.to_employee.name}}({{fm.to_employee.email}})
+           </p>
+           <p><b>Action:</b> {{fm.action}}</p>
+           <p><b>Remark:</b> {{fm.remarks}}</p>
+           </div>
+           {% endfor %} 
+        </div>
+    </div>
+
+    <div class="col-sm-4">
+        {% if file.status == "OPEN" %}
+        <div class="card p-4">
+            <h4>Forward</h4>
+            <form method="post">
+                {% csrf_token %}
+                <div class="card p-2">
+                    <h6>From</h6>
+                    <p>{{emp.name}} ({{emp.email}})</p>
+                </div>
+                <div class="card p-2">
+                    <h6>To</h6>
+                    <select name="emp_email" id="emp_id" class="form-select">
+                        <option value="" selected disabled >Select Employee</option>
+                    {% for emp in employees %}
+                    <option value="{{emp.email}}">{{emp.name}} ({{emp.department.dept_name}}) -- {{emp.email}}</option>
+                    {% endfor %}
+                    </select>
+                </div>
+                <div class="card p-2">
+                    <h6>Action</h6>
+                    <select name="action" class="form-select">
+                        <option value="" selected disabled>Selcect Action</option>
+                        <option value="FORWARD">Forward</option>
+                        <option value="RETURN">Return</option>
+                        <option value="CLOSE">Close</option>
+                    </select>
+                </div>
+                <div class="card p-2">
+                    <h6>Remarks</h6>
+                    <textarea name="remarks"  class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-success w-100">Send</button>
+            </form>
+        </div>
+        {% else %}
+        <div class="card p-4 bg-danger-subtle">
+            <h5>This file is closed</h5>
+        </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

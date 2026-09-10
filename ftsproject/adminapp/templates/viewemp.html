@@ -1,0 +1,32 @@
+{% extends "adminbase.html" %}
+{% load static %}
+{% block admin %}
+<div class="row">
+    <div class="col-sm-12 text-center mx-auto">
+        <table class="table p-4 shadow">
+            <tr>
+                <th>Sr.no</th>
+                <th>Empid</th>
+                <th>Name</th>
+                <th>Email Id </th>
+                <th>Contact No</th>
+                <th>Designation</th>
+                <th>Department</th>
+            </tr>
+            {% for e in emps  %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{e.empid}}</td>
+                <td>{{e.name}}</td>
+                <td>{{e.email}}</td>
+                <td>{{e.contactno}}</td>
+                <td>{{e.designation}}</td>
+                <td>{{e.department.dept_name}}</td>
+            </tr>
+            {% endfor %}
+
+        </table>
+    </div>
+</div>
+
+{% endblock %}
