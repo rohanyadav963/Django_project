@@ -34,24 +34,34 @@
 
   <style>
     @font-face {
-    font-family: 'Poppins';
-    src: url('../../mainapp/static/fonts/Poppins-Medium.ttf') format('truetype');
-    font-weight: 500;
-}
-body * {
-   font-family: "Poppins", sans-serif;
-}
-    .m-header{
-      background-color: #3466e3d2;
-      height: 200px !important;
+      font-family: 'Poppins';
+      src: url('../../mainapp/static/fonts/Poppins-Medium.ttf') format('truetype');
+      font-weight: 500;
     }
-    .box{
-      /* /* background-color: white; */
-      height: 100%;
-      /* padding: .5rem; */ 
-      /* border-radius: 1rem; */
+    body * {
+      font-family: "Poppins", sans-serif;
     }
-  
+    .m-header {
+      background-color: #122d75 !important;
+      height: auto !important;
+      padding: 1.25rem 1rem !important;
+    }
+    .pc-sidebar .navbar-wrapper {
+      background-color: #163DA1 !important;
+      overflow-y: auto !important;
+      max-height: 100vh !important;
+      display: flex;
+      flex-direction: column;
+    }
+    .pc-sidebar .navbar-content {
+      background-color: #163DA1 !important;
+      overflow-y: auto !important;
+      flex-grow: 1;
+    }
+    .box img {
+      max-height: 50px;
+      object-fit: contain;
+    }
   </style>
 </head>
 <!-- [Head] end -->
@@ -257,7 +267,7 @@ body * {
         </div>
         <div class="col-auto my-1">
           <ul class="list-inline footer-link mb-0">
-            <li class="list-inline-item"><a href="../index.html">Home</a></li>
+            <li class="list-inline-item"><a href="{% url 'home' %}">Home</a></li>
           </ul>
         </div>
       </div>

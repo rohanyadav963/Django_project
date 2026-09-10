@@ -7,77 +7,84 @@
     <meta charset="UTF-8" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Home page</title>
+    <title>Home page | File Tracking System</title>
     <link rel="stylesheet" href="{%  static 'css/bootstrap.css' %}" />
     <link rel="stylesheet" href="{%  static 'css/style.css' %}" />
     <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}" />
-
+    <style>
+      .login-box {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .login-box:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 .5rem 1rem rgba(0,0,0,.15)!important;
+      }
+    </style>
   </head>
-  <body>
+  <body class="bg-light">
     <!--outer start  -->
-    <div class="container-fluid shadow-sm" style="height: 100vh">
-      <div class="row h-100vh">
-        <div class="col-sm-8 mx-auto">
+    <div class="container-fluid min-vh-100 py-4 d-flex align-items-center justify-content-center">
+      <div class="row w-100">
+        <div class="col-lg-9 col-md-11 mx-auto">
           <!-- center start -->
-          <div class="row border-2 border-top border-success rounded-top">
+          <div class="row border-2 border-top border-success rounded shadow-lg overflow-hidden">
             <!-- left content -->
-            <div class="col-sm-6  bg-l pt-3 text-white rounded-start" style="background-color: rgba(5, 100, 5, 0.945);">
-              <div class="logo bg-white border rounded w-25 px-2 py-2 mt-3 ms-2">
-                <img src="{% static 'images/ggllogo.png' %}" alt="gglpng" />
+            <div class="col-md-6 p-4 text-white d-flex flex-column justify-content-between" style="background-color: rgba(5, 100, 5, 0.95);">
+              <div>
+                <div class="logo bg-white border rounded p-2 mb-3" style="width: 80px;">
+                  <img src="{% static 'images/ggllogo.png' %}" alt="GGL Logo" class="img-fluid" />
+                </div>
+                <h1 class="h2 fw-bold">File Tracking System</h1>
+                <p class="mb-4">
+                  Secure digital platform for official file upload, movement,
+                  approvals, department workflow and real-time tracking.
+                </p>
               </div>
-              <h1 class="ms-2">File Tracking System</h1>
-              <p class="ms-2 mb-5">
-                Secure digital platform for official file upload, movement,
-                approvals, department workflow and real-time tracking.
-              </p>
-              <div class="features ms-2">
-                <span class="fw-bold">
-                  <i class="fa-solid fa-file-shield"></i> Secure File Management
-                  System</span
-                >
-              </div>
-              <div class="features ms-2 fw-bold mb-2">
-                <span
-                  ><i class="fa-solid fa-route"></i>Track File Movement</span
-                >
+              <div>
+                <div class="features mb-2">
+                  <span class="fw-bold"><i class="fa-solid fa-file-shield me-2"></i> Secure File Management System</span>
+                </div>
+                <div class="features fw-bold">
+                  <span><i class="fa-solid fa-route me-2"></i> Track File Movement</span>
+                </div>
               </div>
             </div>
             <!-- left end -->
 
             <!-- Right content -->
-            <div class="col-sm-6 bg-white rounded-end">
-              <div class="rightcontent ms-2 my-4">
-                <span
-                  class="bg-success-subtle rounded-4 px-2 py-1 text-success fw-bold"
-                  style="font-size: 10px"
-                  >Green Gas Limited</span
-                >
-                <h2 class="fw-bold mt-2">Official Portal</h2>
-                <p>Plese select your login type to continue</p>
+            <div class="col-md-6 bg-white p-4">
+              <div class="rightcontent">
+                <span class="bg-success-subtle rounded-4 px-3 py-1 text-success fw-bold d-inline-block mb-2" style="font-size: 11px">Green Gas Limited</span>
+                <h2 class="fw-bold">Official Portal</h2>
+                <p class="text-muted">Please select your login type to continue</p>
 
-              <a href="{% url 'adminlogin'%}" class="text-decoration-none box1">
-                <div class="login-box card shadow-sm p-3 rounded mb-3">
-                  <div class="bg-primary h-25 text-center rounded-3 " style="width:50px;">
-                    <i class="fa-solid fa-user-shield bg-primary bg-f text-white  p-1 my-1 rounded-2 fs-2"></i>
-                  </div>
-                    <h4 class="fw-bold text-black mt-1">Admin Login</h4>
-                    <span class="text-black">
-                      Manage users, departments and all file records.
-                    </span>
-                  
-                </div>
-              </a>
-              <a href="{% url 'userlogin'%}" class="text-decoration-none text-dark">
-                <div class="login-box  card shadow-sm p-3 mb-3 d-flex rounded">
-                    <div class="bg-success h-25 text-center rounded-3 " style="width:50px;">
-                      <i class="fa-solid fa-user bg-success bg-f text-white  p-1 my-1 rounded-2 fs-2"></i>
+                <a href="{% url 'adminlogin'%}" class="text-decoration-none">
+                  <div class="login-box card border-0 bg-primary-subtle p-3 rounded mb-3">
+                    <div class="d-flex align-items-center">
+                      <div class="bg-primary text-center rounded-3 p-2 me-3 text-white" style="width:48px; height:48px;">
+                        <i class="fa-solid fa-user-shield fs-4"></i>
+                      </div>
+                      <div>
+                        <h5 class="fw-bold text-dark mb-0">Admin Login</h5>
+                        <small class="text-muted">Manage users, departments and file records.</small>
+                      </div>
                     </div>
-                    <h4 class="fw-bold text-black mt-1">User Login</h4>
-                    <span class="text-black">
-                      Upload, update, move and track your files.
-                    </span>
-                 </div>
-              </a>
+                  </div>
+                </a>
+
+                <a href="{% url 'userlogin'%}" class="text-decoration-none">
+                  <div class="login-box card border-0 bg-success-subtle p-3 rounded mb-3">
+                    <div class="d-flex align-items-center">
+                      <div class="bg-success text-center rounded-3 p-2 me-3 text-white" style="width:48px; height:48px;">
+                        <i class="fa-solid fa-user fs-4"></i>
+                      </div>
+                      <div>
+                        <h5 class="fw-bold text-dark mb-0">User Login</h5>
+                        <small class="text-muted">Upload, update, move and track files.</small>
+                      </div>
+                    </div>
+                  </div>
+                </a>
               </div>
             </div>
             <!-- right end -->
@@ -87,13 +94,6 @@
         <!-- outer end -->
       </div>
     </div>
-
-    {% comment "" %}
-    <h1 class="bg-success">hell</h1>
-    <a href="{% url 'adminlogin' %}">Admin Login</a>
-    <br />
-    <a href="{% url 'userlogin' %}">User Login</a>
-    {% endcomment %}
 
     <script src="{%static 'js/bootstrap.bundle.js' %}"></script>
   </body>

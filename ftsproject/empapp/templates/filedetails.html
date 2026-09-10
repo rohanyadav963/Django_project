@@ -5,11 +5,11 @@
 {% block profileimg1 %}{{emp.picture.url}}{% endblock %}
 {% block profileimg2 %}{{emp.picture.url}}{% endblock %}
 {% block employee %}
-<h3>File Detalis </h3>
+<h3>File Details</h3>
 <div class="row">
     
     <div class="col-sm-8 ">
-        <div class="card p-4 ">
+        <div class="card p-4 shadow-sm">
             <h4>File No: {{file.file_no}}</h4>
             <table class="table">
                 <tr>
@@ -30,7 +30,13 @@
                 </tr>
                 <tr>
                     <th>Status</th>
-                    <td>{{file.status}}</td>
+                    <td>
+                        {% if file.status == "OPEN" %}
+                        <span class="badge text-bg-success px-3 py-2">Open</span>
+                        {% else %}
+                        <span class="badge text-bg-danger px-3 py-2">Closed</span>
+                        {% endif %}
+                    </td>
                 </tr>
                 <tr>
                     <th>Initiated Date</th>
@@ -40,25 +46,25 @@
                     <th>Attached File</th>
                     <td>
                         {% if file.file_attachment %}
-                        <a href="{{file.file_attachment.url}}" target="_blank">View File</a>
-                    {% else %}
-                        No file attached
-                    {% endif %}
+                        <a href="{{file.file_attachment.url}}" target="_blank" class="btn btn-sm btn-outline-primary"><i class="fa fa-paperclip me-1"></i> View Attachment</a>
+                        {% else %}
+                        <span class="text-muted">No file attached</span>
+                        {% endif %}
                     </td>
                 </tr>
             </table>
         </div>
-        <div class="card p-4">
-            <h4>Track Histroy</h4>
+        <div class="card p-4 shadow-sm mt-3">
+            <h4>Track History</h4>
            {% for fm in file_moments %}
-           <div class="card p-4">
-           <p><i class="ti ti-calendar"></i>{{fm.moved_at}}</p>
-           <p> <b>From:</b>{{fm.from_employee.name}}({{fm.from_employee.email}}) <br>
-            <i class="ti ti-arrow-down fw-bold"></i> <br>
-            <b>To:</b> {{fm.to_employee.name}}({{fm.to_employee.email}})
+           <div class="border rounded p-3 mb-2 bg-light">
+           <p class="mb-1 text-muted"><i class="ti ti-calendar me-1"></i>{{fm.moved_at}}</p>
+           <p class="mb-1"> <b>From:</b> {{fm.from_employee.name}} ({{fm.from_employee.email}}) <br>
+            <i class="ti ti-arrow-down fw-bold text-primary my-1"></i> <br>
+            <b>To:</b> {% if fm.to_employee %}{{fm.to_employee.name}} ({{fm.to_employee.email}}){% else %}<span class="text-muted">N/A (Closed)</span>{% endif %}
            </p>
-           <p><b>Action:</b> {{fm.action}}</p>
-           <p><b>Remark:</b> {{fm.remarks}}</p>
+           <p class="mb-1"><b>Action:</b> <span class="badge text-bg-secondary">{{fm.action}}</span></p>
+           <p class="mb-0"><b>Remarks:</b> {{fm.remarks}}</p>
            </div>
            {% endfor %} 
         </div>
@@ -66,37 +72,37 @@
 
     <div class="col-sm-4">
         {% if file.status == "OPEN" %}
-        <div class="card p-4">
-            <h4>Forward</h4>
+        <div class="card p-4 shadow-sm">
+            <h4>Forward / Close File</h4>
             <form method="post">
                 {% csrf_token %}
-                <div class="card p-2">
-                    <h6>From</h6>
-                    <p>{{emp.name}} ({{emp.email}})</p>
+                <div class="mb-3">
+                    <label class="fw-bold">From</label>
+                    <p class="form-control-plaintext bg-light p-2 rounded">{{emp.name}} ({{emp.email}})</p>
                 </div>
-                <div class="card p-2">
-                    <h6>To</h6>
+                <div class="mb-3">
+                    <label for="emp_id" class="fw-bold">To Employee</label>
                     <select name="emp_email" id="emp_id" class="form-select">
-                        <option value="" selected disabled >Select Employee</option>
-                    {% for emp in employees %}
-                    <option value="{{emp.email}}">{{emp.name}} ({{emp.department.dept_name}}) -- {{emp.email}}</option>
-                    {% endfor %}
+                        <option value="" selected disabled>Select Employee</option>
+                        {% for emp in employees %}
+                        <option value="{{emp.email}}">{{emp.name}} ({{emp.department.dept_name}}) -- {{emp.email}}</option>
+                        {% endfor %}
                     </select>
                 </div>
-                <div class="card p-2">
-                    <h6>Action</h6>
-                    <select name="action" class="form-select">
-                        <option value="" selected disabled>Selcect Action</option>
+                <div class="mb-3">
+                    <label class="fw-bold">Action</label>
+                    <select name="action" class="form-select" required>
+                        <option value="" selected disabled>Select Action</option>
                         <option value="FORWARD">Forward</option>
                         <option value="RETURN">Return</option>
                         <option value="CLOSE">Close</option>
                     </select>
                 </div>
-                <div class="card p-2">
-                    <h6>Remarks</h6>
-                    <textarea name="remarks"  class="form-control"></textarea>
+                <div class="mb-3">
+                    <label class="fw-bold">Remarks</label>
+                    <textarea name="remarks" class="form-control" rows="3" placeholder="Enter remarks..."></textarea>
                 </div>
-                <button type="submit" class="btn btn-success w-100">Send</button>
+                <button type="submit" class="btn btn-success w-100 fw-bold">Submit Action</button>
             </form>
         </div>
         {% else %}

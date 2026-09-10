@@ -51,17 +51,27 @@
   <link rel="stylesheet" href="{% static 'admin/assets/css/style.css' %}" id="main-style-link">
   <link rel="stylesheet" href="{% static 'admin/assets/css/style-preset.css' %}">
 <style>
-  .m-header{
-      background-color: #034a24;
-      height: 200px !important;
-    }
-    .box{
-      /* /* background-color: white; */
-      height: 100%;
-      /* padding: .5rem; */ 
-      /* border-radius: 1rem; */
-    }
-  
+  .m-header {
+    background-color: #02381b !important;
+    height: auto !important;
+    padding: 1.25rem 1rem !important;
+  }
+  .pc-sidebar .navbar-wrapper {
+    background-color: #034a24 !important;
+    overflow-y: auto !important;
+    max-height: 100vh !important;
+    display: flex;
+    flex-direction: column;
+  }
+  .pc-sidebar .navbar-content {
+    background-color: #034a24 !important;
+    overflow-y: auto !important;
+    flex-grow: 1;
+  }
+  .box img {
+    max-height: 50px;
+    object-fit: contain;
+  }
 </style>
 </head>
 <!-- [Head] end -->
@@ -214,7 +224,7 @@
                         
                     {% endif %}
               
-              <span class="text-secondary fw-bold">{% block empname1 %}Employee{% endblock %}</span>
+              <span class="text-light fw-bold">{% block empname1 %}Employee{% endblock %}</span>
             </a>
             <div class="dropdown-menu dropdown-user-profile dropdown-menu-end pc-h-dropdown" style="background-color:#034a24;">
               <div class="dropdown-header">
@@ -242,13 +252,13 @@
                 <div class="tab-pane fade show active" id="drp-tab-1" role="tabpanel" aria-labelledby="drp-t1"
                   tabindex="0">
                   <a href="{% url 'empchangepass' %}" class="dropdown-item">
-                    <i class="ti ti-lock fw-bold text-secondary"></i>
-                    <span class="text-secondary fw-bold">Change Password</span>
+                    <i class="ti ti-lock fw-bold text-light"></i>
+                    <span class="text-light fw-bold">Change Password</span>
                   </a>
                   
-                  <a href="{% url 'emplogout' %}" class="dropdown-item ">
-                    <i class="ti ti-power text-secondary fw-bold"></i>
-                    <span class="text-secondary fw-bold">Logout</span>
+                  <a href="{% url 'emplogout' %}" class="dropdown-item">
+                    <i class="ti ti-power text-light fw-bold"></i>
+                    <span class="text-light fw-bold">Logout</span>
                   </a>
                 </div>
                 
@@ -276,12 +286,12 @@
     <div class="footer-wrapper container-fluid">
       <div class="row">
         <div class="col-sm my-1">
-          <p class="m-0">Softpro India &#9829; developed by <a href="https://linkedin.com/in/er-asif"
+          <p class="m-0">Softpro India &#9829; developed by <a href="https://linkedin.com/in/er-rohan-yadav"
               target="_blank">Rohan</a>.</p>
         </div>
         <div class="col-auto my-1">
           <ul class="list-inline footer-link mb-0">
-            <li class="list-inline-item"><a href="../index.html">Home</a></li>
+            <li class="list-inline-item"><a href="{% url 'home' %}">Home</a></li>
           </ul>
         </div>
       </div>
