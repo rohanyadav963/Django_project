@@ -5,89 +5,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login</title>
-    <link rel="stylesheet" href="{%  static 'css/bootstrap.css' %}">
-    <link rel="stylesheet" href="{%  static 'css/style.css' %}">
+    <title>Admin Login | Green Gas Limited</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <link rel="stylesheet" href="{% static 'fontawesome/css/all.min.css' %}">
+    <style>
+        body {
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(135deg, #0b1e3f 0%, #1e3c72 100%);
+            padding: 20px;
+        }
+        .login-card {
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+            overflow: hidden;
+            width: 100%;
+            max-width: 900px;
+        }
+        .brand-logo {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+        }
+        .btn-admin {
+            background-color: #1e3c72;
+            color: #ffffff;
+            border: none;
+            padding: 12px;
+            font-weight: 700;
+            border-radius: 10px;
+            transition: all 0.2s ease;
+        }
+        .btn-admin:hover {
+            background-color: #142850;
+            color: #ffffff;
+            transform: translateY(-1px);
+        }
+    </style>
 </head>
 
-<body style="  min-height: 100vh;
-  overflow-y: hidden;background:linear-gradient(135deg, rgba(18, 41, 90, .94), rgba(29, 78, 216, .90)),
-    url('{% static " images/bg_img.png"%}'); background-size: cover; background-position: center; background-repeat:
-    no-repeat; display: flex; align-items: center; justify-content: center; padding: 90px 24px; overflow-x: hidden;">
+<body>
 
-    <div class="container-fluid shadow-sm" style="height:100vh; ">
-        <div class="row  h-100vh align-items-center">
-            <div class="col-sm-8 mx-auto  ">
-                <div class=" row border-2 shadow-sm border-top  border-primary  rounded-top  ">
-                    <div class="col-sm-6 text-white rounded-start " style="background-color:rgba(11, 52, 141, 0.94); ">
-                        <div class="logo bg-white border rounded w-25 px-2 py-2 mt-3 ms-2 ">
-                            <img src="{% static 'images/ggllogo.png' %}" alt="gglpng">
-                        </div>
-                        <h1 class="ms-2">Admin Login</h1>
-                        <p class="ms-2 mb-5">Admin can manage employees, departments, file records, tracking and
-                            movement workflow.</p>
-
+    <div class="login-card bg-white">
+        <div class="row g-0">
+            <!-- Left Banner -->
+            <div class="col-md-5 p-4 p-md-5 text-white d-flex flex-column justify-content-between" style="background: linear-gradient(145deg, #0d2347 0%, #18386e 100%);">
+                <div>
+                    <div class="bg-white rounded-3 p-2 d-inline-block shadow-sm mb-4">
+                        <img src="{% static 'images/ggllogo.png' %}" alt="Logo" class="brand-logo">
                     </div>
-
-                    <div class="col-sm-6 bg-white d-flex  rounded-end">
-                        <div class="rightcontent ms-2 my-4">
-                            <div class="card ps-3 border-0">
-                            <span class="bg-success-subtle rounded-4 px-2 py-1   text-success fw-bold"
-                                style="font-size:10px; width: 8rem;">Administrator Area</span>
-                            <h2 class="fw-bold mt-4">Welcome Admin</h2>
-                            <p>Enter admin credentials to access dashboard.</p>
-                            <form method="post">
-                                {% csrf_token %}
-                                {% if messages %} {% for m in messages %}
-                                <div class="alert alert-warning alert-dismissible fade show" role="alert">
-                                    {{m}}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
-                                </div>
-                                {% endfor %} {% endif %}
-
-                                <label class="form-label fw-bold">Admin Username / Email</label>
-                                <div class="input-group ">
-                                    <span class="input-group-text">
-                                        <i class="fa-solid fa-user-shield">
-                                        </i>
-                                    </span>
-                                    <input type="text" name="username" placeholder="Enter username or email"
-                                        class="form-control" required>
-                                </div>
-                                <label for="password" class="form-label fw-bold">Password</label>
-                                <div class="input-group mb-3">
-                                    <span class="input-group-text">
-                                        <i class="fa-solid fa-lock"></i></span>
-                                    <input type="password" name="password" placeholder="Enter password"
-                                        class="form-control" required>
-                                </div>
-                                <button class="btn fw-bold w-100 my-4 btn-primary">
-                                    <i class="fa-solid fa-right-to-bracket me-2"></i>
-                                    Admin Login
-                                </button>
-                                <a href="{% url 'home' %}" class="back fw-bold text-decoration-none">← Back to
-                                    Portal</a>
-                            </form>
-                            </div>
-                        </div>
-                    </div>
+                    <h2 class="fw-bold mb-3">Admin Portal</h2>
+                    <p class="text-white-50 small mb-4">Manage employees, department workflows, file records, and administrative governance.</p>
                 </div>
+                <div class="pt-3 border-top border-white border-opacity-10">
+                    <small class="text-white-50"><i class="fa-solid fa-shield-halved me-1 text-warning"></i> Restrict Access: Authorized Personnel Only</small>
+                </div>
+            </div>
+
+            <!-- Right Form -->
+            <div class="col-md-7 p-4 p-md-5 bg-white d-flex flex-column justify-content-center">
+                <div class="mb-3">
+                    <span class="badge bg-primary-subtle text-primary px-3 py-1 rounded-pill fw-bold" style="font-size: 11px;">Administrator Area</span>
+                    <h3 class="fw-bold text-dark mt-2 mb-1">Welcome Back</h3>
+                    <p class="text-secondary small">Enter your admin credentials to access dashboard.</p>
+                </div>
+
+                <!-- Django Messages with 2.5s Auto-Dismiss -->
+                {% if messages %}
+                    {% for m in messages %}
+                        <div class="alert alert-danger alert-dismissible fade show border-0 shadow-sm py-2 px-3 mb-3 small" role="alert">
+                            <i class="fa-solid fa-triangle-exclamation me-1"></i> {{ m }}
+                            <button type="button" class="btn-close py-2" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+
+                <form method="post">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <label class="form-label fw-semibold small text-dark">Admin Username / Email</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0 text-muted"><i class="fa-solid fa-user-shield"></i></span>
+                            <input type="text" name="username" placeholder="Enter username or email" class="form-control bg-light border-start-0" required>
+                        </div>
+                    </div>
+
+                    <div class="mb-4">
+                        <label class="form-label fw-semibold small text-dark">Password</label>
+                        <div class="input-group">
+                            <span class="input-group-text bg-light border-end-0 text-muted"><i class="fa-solid fa-lock"></i></span>
+                            <input type="password" name="password" placeholder="Enter password" class="form-control bg-light border-start-0" required>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn btn-admin w-100 mb-3 shadow-sm">
+                        <i class="fa-solid fa-right-to-bracket me-2"></i> Admin Login
+                    </button>
+
+                    <div class="text-center">
+                        <a href="{% url 'home' %}" class="text-decoration-none small fw-bold text-primary"><i class="fa-solid fa-arrow-left me-1"></i> Back to Portal</a>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
-    </div>
 
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
 
-    {% comment "" %}
-    <h1 class="bg-success">hell</h1>
-    <a href="{% url 'adminlogin' %}">Admin Login</a>
-    <br>
-    <a href="{% url 'userlogin' %}">User Login</a>
-    {% endcomment %}
-
-    <script src="{%static 'js/bootstrap.bundle.js' %}"></script>
+    <!-- Auto-Dismiss Alert Script (2.5 seconds auto cut) -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            setTimeout(function() {
+                let alerts = document.querySelectorAll('.alert');
+                alerts.forEach(function(alert) {
+                    alert.classList.remove('show');
+                    alert.classList.add('fade');
+                    setTimeout(function() {
+                        if (alert.parentNode) {
+                            alert.parentNode.removeChild(alert);
+                        }
+                    }, 300);
+                });
+            }, 2500);
+        });
+    </script>
 </body>
 
 </html>
