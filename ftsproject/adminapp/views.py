@@ -13,12 +13,16 @@ def admindash(request):
     total_emp = Employee.objects.all().count()
     total_dep = Department.objects.all().count()
     pending_files = File.objects.filter(status="OPEN").count()
+    closed_files = File.objects.filter(status="CLOSED").count()
+    recent_files = File.objects.order_by('-created_at')[:5]
     context = {
         'adminid': adminid,
         'total_files': total_files,
         'total_emp': total_emp,
         'total_dep': total_dep,
         'pending_files': pending_files,
+        'closed_files': closed_files,
+        'recent_files': recent_files,
     }
     return render(request, 'admindash.html', context)
 
@@ -64,6 +68,7 @@ def viewdept(request):
     return render(request, 'viewdept.html', context)
 
 # Add Employees
+
 def addemp(request):
     if 'adminid' not in request.session:
         messages.error(request, 'Please Login First')
@@ -87,7 +92,7 @@ def addemp(request):
             messages.warning(request, 'This email already added')
             return redirect('addemp')
 
-        hashed_password = make_password('12345678')
+        hashed_password = make_password('12345678') # this function convert plain text into hashed formate
         log = LoginInfo.objects.create(usertype='employee', username=email, password=hashed_password)
         emp = Employee.objects.create(log=log, empid=empid, name=name, contactno=contactno, email=email, designation=designation, department=dept)
         messages.success(request, 'Employee added successfully')
